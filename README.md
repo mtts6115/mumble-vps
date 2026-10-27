@@ -54,7 +54,7 @@ sudo bash scripts/install-docker.sh
 
 #### 2. Clone Repository นี้ลงบน VPS
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>.git mumble-server
+git clone https://github.com/mtts6115/mumble-vps.git mumble-server
 cd mumble-server
 ```
 
@@ -84,7 +84,7 @@ docker compose logs -f
 หากต้องการติดตั้งลงบนระบบปฏิบัติการโดยตรงผ่าน `apt`:
 
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>.git mumble-server
+git clone https://github.com/mtts6115/mumble-vps.git mumble-server
 cd mumble-server
 sudo bash scripts/install-native.sh
 ```
