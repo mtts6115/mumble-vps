@@ -1,0 +1,30 @@
+# Environment & Secrets
+.env
+*.env
+!.env.example
+
+# Mumble Data & Databases
+data/
+*.sqlite
+*.sqlite3
+*.db
+
+# Backups
+backups/
+*.tar.gz
+*.zip
+
+# SSL / TLS Private Certificates
+certs/*.key
+certs/*.pem
+certs/*.crt
+!certs/.gitkeep
+
+# System & OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/

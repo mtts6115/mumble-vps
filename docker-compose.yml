@@ -1,0 +1,27 @@
+services:
+  mumble-server:
+    image: mumblevoip/mumble-server:latest
+    container_name: mumble-server
+    restart: unless-stopped
+    ports:
+      # Port 64738 is required for both TCP (control/handshake) and UDP (audio stream)
+      - "${MUMBLE_PORT:-64738}:64738/tcp"
+      - "${MUMBLE_PORT:-64738}:64738/udp"
+    volumes:
+      # Persistent SQLite database and server states
+      - ./data:/data
+      # Uncomment the line below if you wish to use the full custom configuration file:
+      # - ./config/mumble-server.ini:/etc/mumble/mumble-server.ini:ro
+    environment:
+      - MUMBLE_SUPERUSER_PASSWORD=${MUMBLE_SUPERUSER_PASSWORD:-SuperSecretPassword123}
+      - MUMBLE_CONFIG_SERVER_PASSWORD=${MUMBLE_SERVER_PASSWORD:-}
+      - MUMBLE_CONFIG_REGISTER_NAME=${MUMBLE_SERVER_NAME:-My Mumble VPS}
+      - MUMBLE_CONFIG_WELCOME_TEXT=${MUMBLE_WELCOME_TEXT:-<b>Welcome to Mumble Server</b>}
+      - MUMBLE_CONFIG_USERS=${MUMBLE_MAX_USERS:-100}
+      - MUMBLE_CONFIG_BANDWIDTH=${MUMBLE_BANDWIDTH:-96000}
+      - MUMBLE_CONFIG_OPUS_THRESHOLD=${MUMBLE_OPUS_THRESHOLD:-100}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
